@@ -1,0 +1,393 @@
+/* CSS Variables */
+:root {
+    --primary-orange: #F7931E;
+    --primary-black: #0a0a0a;
+    --secondary-black: #1a1a1a;
+    --text-white: #ffffff;
+    --text-gray: #a0a0a0;
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --terminal-font: 'Courier New', Courier, monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--primary-black);
+    color: var(--text-white);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Loader Styles --- */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 9999;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* Text at bottom like a terminal */
+    align-items: flex-start;
+    font-family: var(--terminal-font);
+    overflow: hidden;
+    transition: opacity 0.8s ease-out;
+}
+
+.loader-text {
+    color: var(--primary-orange);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    text-shadow: 0 0 5px rgba(247, 147, 30, 0.5);
+    white-space: pre-wrap;
+    /* Preserve formatting */
+}
+
+.blink-cursor::after {
+    content: '_';
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    max-width: 1920px;
+    margin: 0 auto;
+    background: var(--primary-black);
+    position: relative;
+    opacity: 0;
+    /* Hidden initially, revealed by JS */
+    transition: opacity 1s ease-in;
+}
+
+.container.visible {
+    opacity: 1;
+}
+
+/* --- Left Section: Brand --- */
+.brand-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
+    position: relative;
+    border-right: 2px solid var(--primary-orange);
+    background: radial-gradient(circle at top left, #1f1f1f 0%, var(--primary-black) 60%);
+    z-index: 10;
+    overflow: hidden;
+    /* Contain the matrix rain */
+}
+
+/* --- Interactive Canvas (Matrix Rain) --- */
+#particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.25;
+    /* Subtle background */
+    pointer-events: none;
+}
+
+/* Enhanced logo container visibility */
+.logo-container {
+    margin-bottom: 3rem;
+    position: relative;
+    background: radial-gradient(closest-side, rgba(255, 255, 255, 0.12), transparent);
+    padding: 2rem;
+    border-radius: 50%;
+}
+
+.brand-logo {
+    max-width: 300px;
+    height: auto;
+    display: block;
+    filter: brightness(1.3) contrast(1.1) drop-shadow(0 0 1px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 20px rgba(247, 147, 30, 0.2));
+}
+
+.brand-logo:after {
+    content: "BSides Noida";
+    display: block;
+    font-size: 2rem;
+    color: var(--primary-orange);
+}
+
+.content-wrapper {
+    text-align: left;
+    max-width: 500px;
+    width: 100%;
+    z-index: 10;
+    /* Above canvas */
+    position: relative;
+}
+
+.coming-soon {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    color: var(--text-white);
+}
+
+.coming-soon .dot {
+    color: var(--primary-orange);
+}
+
+.subtext {
+    font-size: 1.25rem;
+    color: var(--text-gray);
+    font-weight: 300;
+    max-width: 400px;
+}
+
+/* --- Right Section: Video --- */
+.video-section {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    background: transparent;
+}
+
+.video-container {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.video-container iframe {
+    width: 100vw;
+    height: 56.25vw;
+    min-height: 100vh;
+    min-width: 177.77vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Scalling up to 1.35 to hide the YouTube Title Bar and controls completely */
+    transform: translate(-50%, -50%) scale(1.35);
+    opacity: 0.8;
+}
+
+/* --- Unmute Button --- */
+.audio-btn {
+    position: absolute;
+    bottom: 6rem;
+    right: 3rem;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    color: var(--text-white);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.audio-btn:hover {
+    background: var(--primary-orange);
+    color: var(--primary-black);
+    border-color: var(--primary-orange);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(247, 147, 30, 0.4);
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.audio-btn .icon-sound {
+    display: none;
+}
+
+.audio-btn .icon-mute {
+    display: block;
+}
+
+.audio-btn .label::after {
+    content: "UNMUTE";
+}
+
+.audio-btn.active .icon-sound {
+    display: block;
+}
+
+.audio-btn.active .icon-mute {
+    display: none;
+}
+
+.audio-btn.active .label::after {
+    content: "MUTE";
+}
+
+.audio-btn.active {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--primary-black);
+}
+
+/* --- Social Footer --- */
+.social-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid var(--glass-border);
+    z-index: 100;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.social-link {
+    color: var(--text-white);
+    font-size: 1.25rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.social-link i {
+    color: #ffffff;
+}
+
+.social-link:hover {
+    color: var(--primary-black);
+    background: var(--primary-orange);
+    transform: translateY(-3px);
+}
+
+.social-link:hover i {
+    color: var(--primary-black);
+}
+
+.copyright {
+    color: var(--text-gray);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    font-weight: 300;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+    body {
+        height: auto;
+        overflow-y: auto;
+    }
+
+    .container {
+        flex-direction: column;
+        height: auto;
+        padding-bottom: 80px;
+    }
+
+    .brand-section {
+        min-height: 50vh;
+        border-right: none;
+        border-bottom: 2px solid var(--primary-orange);
+        padding: 3rem 1.5rem;
+        align-items: flex-start;
+    }
+
+    .brand-logo {
+        max-width: 180px;
+    }
+
+    .coming-soon {
+        font-size: 2.5rem;
+    }
+
+    .video-section {
+        height: 50vh;
+        min-height: 400px;
+    }
+
+    .video-container iframe {
+        /* On mobile, standard covering is usually enough, but we keep scale to hide utils */
+        transform: translate(-50%, -50%) scale(1.4);
+    }
+
+    .audio-btn {
+        bottom: 5rem;
+        right: 1.5rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .social-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem;
+    }
+}

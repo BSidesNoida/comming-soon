@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BSides Noida - Coming Soon">
+    <title>BSides Noida - Coming Soon</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+    <!-- Nostalgic Terminal Loader -->
+    <div id="loader">
+        <div class="loader-text blink-cursor"></div>
+    </div>
+
+    <main class="container">
+        <!-- Left Section: Branding -->
+        <section class="brand-section">
+            <canvas id="particle-canvas"></canvas> <!-- Interactive Background -->
+            <div class="content-wrapper">
+                <div class="logo-container">
+                    <!-- Assuming bsn_logo.png is in the same directory as per list_dir -->
+                    <img src="bsn_logo.png" alt="BSides Noida Logo" class="brand-logo" id="mainLogo">
+                </div>
+
+                <div class="text-content">
+                    <h1 class="coming-soon">Coming Soon<span class="dot">.</span></h1>
+                    <p class="subtext">We are preparing something amazing. Stay tuned.</p>
+                </div>
+            </div>
+
+            <!-- Decorative vertical line for desktop (handled in CSS borders) -->
+        </section>
+
+        <!-- Right Section: Video -->
+        <section class="video-section">
+            <div class="video-overlay"></div> <!-- Blocks direct interaction with YT controls -->
+            <div class="video-container" id="video-placeholder"></div>
+
+            <button id="audio-toggle" class="audio-btn muted">
+                <span class="icon">
+                    <!-- Speaker X Icon (Muted) -->
+                    <svg class="icon-mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <line x1="23" y1="9" x2="17" y2="15"></line>
+                        <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
+
+                    <!-- Speaker Wave Icon (Unmuted) -->
+                    <svg class="icon-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    </svg>
+                </span>
+                <span class="label"></span>
+            </button>
+        </section>
+
+        <!-- Fixed Footer: Socials -->
+        <footer class="social-footer">
+            <div class="social-links">
+                <a href="https://www.youtube.com/@BSides_Noida" target="_blank" aria-label="YouTube"
+                    class="social-link">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a href="https://x.com/BSidesNoida" target="_blank" aria-label="X (Twitter)" class="social-link">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+                <a href="https://instagram.com/bsidesnoida" target="_blank" aria-label="Instagram" class="social-link">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/bsidesnoida/" target="_blank" aria-label="LinkedIn"
+                    class="social-link">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://discord.gg/2sghWn4e9y" target="_blank" aria-label="Discord" class="social-link">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
+                <a href="https://blog.bsidesnoida.in/" target="_blank" aria-label="Blog" class="social-link">
+                    <i class="fa-solid fa-pen-nib"></i>
+                </a>
+                <!-- WhatsApp - Normal State -->
+                <a href="#" class="social-link" title="Join WhatsApp Community">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+            </div>
+            <div class="copyright">© 2025 BSides Noida</div>
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
